@@ -27,7 +27,7 @@ public class Fraction {
         }
     }
 
-    public static int ucln(int a, int b) {
+    private static int ucln(int a, int b) {
         if (b == 0) return a;
         return ucln(b, a % b);
     }
@@ -73,6 +73,28 @@ public class Fraction {
         return result.rutGon();
     }
 
+    public int soSanh(Fraction ps){
+        if (this.getTuSo()/ps.getTuMau() > ps.getTuSo()/ps.getTuMau())
+            return 1;
+        else if (this.getTuSo()/ps.getTuMau() < ps.getTuSo()/ps.getTuMau())
+            return -1;
+        else
+            return 0;
+    }
+
+    public boolean toiGian(){
+        if (tuSo == this.rutGon().getTuSo() && mauSo == this.rutGon().getTuMau()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean duongSo(){
+        if ((tuSo > 1 && mauSo >1) || (tuSo < 1 && mauSo < 1)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

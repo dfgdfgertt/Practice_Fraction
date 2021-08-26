@@ -8,34 +8,33 @@ public class App {
 
         Fraction ps = new Fraction(random.nextInt(30)-10, random.nextInt(30)-10 );
 
-        System.out.println("Phan so thứ nhất: " + ps.toString());
+        System.out.println("Phan so thứ nhất: " + ps);
         System.out.println("Rut gon: " + ps.rutGon());
         Fraction ps1 = new Fraction(random.nextInt(30)-10, random.nextInt(30)-10 );
-        System.out.println("Phan so thứ hai: " + ps1.toString());
-        System.out.println("Tổng: \t\t" + ps.toString()+" + "+ ps1.toString()+" = "+ ps.cong(ps1));
-        System.out.println("Hiệu: \t\t" + ps.toString()+" - "+ ps1.toString()+" = "+ ps.tru(ps1));
-        System.out.println("Tích : \t\t" + ps.toString()+" * "+ ps1.toString()+" = "+ ps.nhan(ps1));
-        System.out.println("Thương: \t" + ps.toString()+" / "+ ps1.toString()+" = "+ ps.chia(ps1));
-        System.out.println(ps.toString() +" là phân số tối giản: " + toiGian(ps));
-        System.out.println(ps.toString() +" là phân số dương: " + duongSo(ps));
-
-        quiDong(ps,ps1);
+        System.out.println("Phan so thứ hai: " + ps1);
+        System.out.println("Tổng: \t\t" + ps+" + "+ ps1+" = "+ ps.cong(ps1));
+        System.out.println("Hiệu: \t\t" + ps+" - "+ ps1+" = "+ ps.tru(ps1));
+        System.out.println("Tích : \t\t" + ps+" * "+ ps1+" = "+ ps.nhan(ps1));
+        System.out.println("Thương: \t" + ps+" / "+ ps1+" = "+ ps.chia(ps1));
+        toiGian(ps);
+        duongSo(ps);
+        //quiDong(ps,ps1);
         soSanh(ps,ps1);
 
     }
 
-    public static boolean toiGian(Fraction ps){
-        if (ps.getTuSo() == ps.rutGon().getTuSo() && ps.getTuMau() == ps.rutGon().getTuMau()) {
-            return true;
-        }
-        return false;
+    public static void toiGian(Fraction ps){
+        if (ps.toiGian())
+            System.out.println(ps +" không là phân số tối giản");
+        else
+        System.out.println(ps +" là phân số tối giản");
     }
 
-    public static boolean duongSo(Fraction ps){
-        if ((ps.getTuSo()/ps.getTuMau()) >= 0) {
-            return true;
-        }
-        return false;
+    public static void duongSo(Fraction ps){
+        if (ps.duongSo())
+            System.out.println(ps +" là phân số dương");
+        else
+            System.out.println(ps +" là phân số âm");
     }
 
     public static void quiDong(Fraction ps,Fraction ps1){
@@ -52,14 +51,12 @@ public class App {
     }
 
     public static void soSanh(Fraction ps,Fraction ps1){
-        String phep = "";
-        if (ps.getTuSo()/ps.getTuMau() > ps1.getTuSo()/ps1.getTuMau())
-            phep = ">";
-        else if (ps.getTuSo()/ps.getTuMau() < ps1.getTuSo()/ps1.getTuMau())
-            phep = "<";
+        if (ps.soSanh(ps1) == 1)
+            System.out.println("So sanh: \t" + ps.rutGon()+" < "+ ps1.rutGon());
+        else if (ps.soSanh(ps1) == -1)
+            System.out.println("So sanh: \t" + ps.rutGon()+" < "+ ps1.rutGon());
         else
-            phep = "=";
-        System.out.println("So sanh: \t" + ps.rutGon().toString()+" "+ phep + " "+ ps1.rutGon().toString());
+            System.out.println("So sanh: \t" + ps.rutGon()+" < "+ ps1.rutGon());
 
     }
 
